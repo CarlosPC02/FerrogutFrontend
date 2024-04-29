@@ -1,0 +1,59 @@
+<h2 mat-dialog-title>{{tituloAccion}} Producto</h2>
+<mat-dialog-content>
+  <form [formGroup]="formularioProducto">
+    <mat-grid-list cols="1" rowHeight="80px">
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre del Producto</mat-label>
+          <input title="Nombre del Producto" matInput autocomplete="off" formControlName="nombreProducto">
+          <mat-icon matSuffix>account-box</mat-icon>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Precio</mat-label>
+          <input title="Precio" matInput autocomplete="off" formControlName="precio">
+          <mat-icon matSuffix>credit-card</mat-icon>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Codigo de Barras</mat-label>
+          <input title="Codigo de Barras" matInput autocomplete="off" formControlName="codigoBarras">
+          <mat-icon matSuffix>user</mat-icon>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Marca</mat-label>
+          <input title="Marca" matInput autocomplete="off" formControlName="Marca">
+          <mat-icon matSuffix>user</mat-icon>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Categoria</mat-label>
+          <mat-select formControlName="idRol">
+            <mat-option *ngFor="let item of listaCategorias" [value]="item.idCategoria">
+              {{item.nombreCategoria}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+
+
+    </mat-grid-list>
+  </form>
+
+</mat-dialog-content>
+
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close color="warn">Volver</button>
+  <button mat-raised-button color="primary" [disabled]="formularioProducto.invalid" (click)="guardarEditar_Producto()">{{botonAccion}}</button>
+</mat-dialog-actions>

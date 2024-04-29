@@ -1,0 +1,79 @@
+<!-- header -->
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <h1>Ferrogut</h1>
+
+    <button mat-icon-button (click)="sidenav.toggle();">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </mat-toolbar-row>
+
+</mat-toolbar>
+<!-- sidebar -->
+<mat-sidenav-container>
+  <mat-sidenav #sidenav opened="true" mode="side" style="width: 250px;">
+
+    <mat-nav-list>
+
+      <mat-list-item routerLink="/pages/dashboard">
+        <mat-icon matListItemIcon>dashboard</mat-icon>
+        <a mat-line>Dashboard</a>
+      </mat-list-item>
+
+      <mat-list-item routerLink="/pages/usuario">
+        <mat-icon matListItemIcon>group</mat-icon>
+        <a mat-line>Usuarios</a>
+      </mat-list-item>
+
+      <mat-list-item  routerLink="/pages/categoria">
+        <mat-icon  matListItemIcon>category</mat-icon>
+        <a mat-line>Categoria</a>
+      </mat-list-item>
+
+      <mat-list-item  routerLink="/pages/producto">
+        <mat-icon  matListItemIcon>inventory2</mat-icon>
+        <a mat-line>Productos</a>
+      </mat-list-item>
+
+      <mat-list-item  routerLink="/pages/proveedor">
+        <mat-icon  matListItemIcon>work</mat-icon>
+        <a mat-line>Proveedor</a>
+      </mat-list-item>
+
+      <mat-list-item  routerLink="/pages/sucursal">
+        <mat-icon  matListItemIcon>storefront</mat-icon>
+        <a mat-line>Sucursal</a>
+      </mat-list-item>
+
+      <mat-list-item  routerLink="/pages/inventario">
+        <mat-icon  matListItemIcon>inventory</mat-icon>
+        <a mat-line>Inventario</a>
+      </mat-list-item>
+
+      <mat-list-item routerLink="/pages/venta">
+        <mat-icon matListItemIcon>currency_exchange</mat-icon>
+        <a mat-line>Ventas</a>
+      </mat-list-item>
+
+      <!-- <mat-list-item routerLink="/pages/historial_venta">
+        <mat-icon matListItemIcon>timeline</mat-icon>
+        <a mat-line>Historial de Ventas</a>
+      </mat-list-item> -->
+
+      <!-- <mat-list-item routerLink="/pages/reporte">
+        <mat-icon matListItemIcon>receipt</mat-icon>
+        <a mat-line>Reportes</a>
+      </mat-list-item> -->
+
+    </mat-nav-list>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div style="height: 90vh;">
+      <router-outlet></router-outlet>
+
+    </div>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

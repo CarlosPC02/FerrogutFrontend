@@ -1,0 +1,93 @@
+<h1 style="margin: 20px 0px 0px 40px;">Proveedor</h1>
+
+<mat-card style="margin: 20px 40px 40px 40px;">
+  <br>
+  <mat-card-title>
+    <button mat-raised-button color="primary" (click)="nuevoProveedor()">
+      <mat-icon mat-list-icon>add</mat-icon>Nuevo Proveedor
+    </button>
+  </mat-card-title>
+  <br>
+  <mat-divider></mat-divider>
+
+  <mat-card-content class="dashboard-card-content">
+    <mat-form-field appearance="outline" >
+      <mat-label>Buscar</mat-label>
+      <input title="Buscar" matInput (keyup)="aplicarFiltroTabla($event)" #input>
+    </mat-form-field>
+
+    <div class="mat-elevation-z2">
+
+      <table mat-table [dataSource]="dataListaProveedores">
+
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> Id </th>
+          <td mat-cell *matCellDef="let element"> {{element.idProveedor}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef> Nombre </th>
+          <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="apePaterno">
+          <th mat-header-cell *matHeaderCellDef> Apellido Paterno </th>
+          <td mat-cell *matCellDef="let element"> {{element.apePaterno}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="apeMaterno">
+          <th mat-header-cell *matHeaderCellDef> Apellido Materno </th>
+          <td mat-cell *matCellDef="let element"> {{element.apeMaterno}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="ci">
+          <th mat-header-cell *matHeaderCellDef> Carnet </th>
+          <td mat-cell *matCellDef="let element"> {{element.ci}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="empresa">
+          <th mat-header-cell *matHeaderCellDef> Empresa </th>
+          <td mat-cell *matCellDef="let element"> {{element.empresa}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="celular">
+          <th mat-header-cell *matHeaderCellDef> Celular </th>
+          <td mat-cell *matCellDef="let element"> {{element.celular}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="estaActivo">
+          <th mat-header-cell *matHeaderCellDef> Estado </th>
+          <td mat-cell *matCellDef="let element"> {{ element.estaActivo === 1 ? "Activo" :  "No activo"}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef style="width:80px;"> Acciones </th>
+          <td mat-cell *matCellDef="let element">
+
+            <button mat-icon-button color="primary" (click)="editarProveedor(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+
+            <button mat-icon-button color="warn" (click)="eliminarProveedor(element.idUser)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnasTable"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnasTable;"></tr>
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No hay datos que coincidan con el filtro "{{input.value}}"</td>
+        </tr>
+
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons>
+      </mat-paginator>
+
+    </div>
+  </mat-card-content>
+
+</mat-card>
+

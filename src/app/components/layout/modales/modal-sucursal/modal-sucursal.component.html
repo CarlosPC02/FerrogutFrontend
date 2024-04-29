@@ -1,0 +1,49 @@
+<h2 mat-dialog-title>{{tituloAccion}} Sucursal</h2>
+<mat-dialog-content>
+  <form [formGroup]="formularioSucursal">
+    <mat-grid-list cols="1" rowHeight="80px">
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Direccion</mat-label>
+          <input title="Direccion" matInput autocomplete="off" formControlName="direccion">
+          <mat-icon matSuffix>explore</mat-icon>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Localidad</mat-label>
+          <input title="Localidad" matInput autocomplete="off" formControlName="localidad">
+          <mat-icon matSuffix>explore</mat-icon>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Barrio</mat-label>
+          <input title="Barrio" matInput autocomplete="off" formControlName="barrio">
+          <mat-icon matSuffix>explore</mat-icon>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Departamento</mat-label>
+          <input title="Departamento" matInput autocomplete="off" formControlName="departamento">
+          <mat-icon matSuffix>explore</mat-icon>
+        </mat-form-field>
+      </mat-grid-tile>
+
+
+
+    </mat-grid-list>
+  </form>
+
+</mat-dialog-content>
+
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close color="warn">Volver</button>
+  <button mat-raised-button color="primary" [disabled]="formularioSucursal.invalid" (click)="guardarEditar_Sucursal()">{{botonAccion}}</button>
+</mat-dialog-actions>

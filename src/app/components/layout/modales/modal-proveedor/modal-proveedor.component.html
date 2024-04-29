@@ -1,0 +1,75 @@
+<h2 mat-dialog-title>{{tituloAccion}} Proveedor</h2>
+<mat-dialog-content>
+  <form [formGroup]="formularioProveedor">
+    <mat-grid-list cols="1" rowHeight="80px">
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input title="Nombre" matInput autocomplete="off" formControlName="nombre">
+          <mat-icon matSuffix>account-box</mat-icon>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Apellido Paterno</mat-label>
+          <input title="Apellido Paterno" matInput autocomplete="off" formControlName="apeMaterno">
+          <mat-icon matSuffix>account-box</mat-icon>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Apellido Materno</mat-label>
+          <input title="Apellido Materno" matInput autocomplete="off" formControlName="apeMaterno">
+          <mat-icon matSuffix>account-box</mat-icon>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Carnet</mat-label>
+          <input title="Carnet" matInput autocomplete="off" formControlName="ci">
+          <mat-icon matSuffix>credit-card</mat-icon>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Empresa</mat-label>
+          <input title="Empresa" matInput autocomplete="off" formControlName="empresa">
+          <mat-icon matSuffix>work</mat-icon>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Celular</mat-label>
+          <input title="Celular" matInput autocomplete="off" formControlName="celular">
+          <mat-icon matSuffix>phone</mat-icon>
+        </mat-form-field>
+      </mat-grid-tile>
+
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Estado</mat-label>
+          <mat-select formControlName="estaActivo">
+            <mat-option value="1">Activo</mat-option>
+            <mat-option value="0">No Activo</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+
+    </mat-grid-list>
+  </form>
+
+</mat-dialog-content>
+
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close color="warn">Volver</button>
+  <button mat-raised-button color="primary" [disabled]="formularioProveedor.invalid" (click)="guardarEditar_Proveedor()">{{botonAccion}}</button>
+</mat-dialog-actions>
+
