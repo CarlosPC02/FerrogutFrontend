@@ -61,10 +61,11 @@ export class ModalProductoComponent implements OnInit{
 
       this.formularioProducto.patchValue({
         nombreProducto: this.datosProducto.nombreProducto,
-        idCategoria: this.datosProducto.idCategoria,
+        descripcion: this.datosProducto.descripcion,
         codigoBarras: this.datosProducto.codigoBarras,
         marca: this.datosProducto.marca,
         precio: String(this.datosProducto.precio),
+        idCategoria: this.datosProducto.idCategoria,
 
       })
     }
@@ -77,9 +78,9 @@ export class ModalProductoComponent implements OnInit{
       nombreProducto: this.formularioProducto.value.nombreProducto,
       marca: this.formularioProducto.value.marca,
       codigoBarras: this.formularioProducto.value.codigoBarras,
-      idCategoria: this.formularioProducto.value.idCategoria,
-      descripcion: "",
+      descripcion: this.formularioProducto.value.descripcion,
       precio: this.formularioProducto.value.precio,
+      idCategoria: this.formularioProducto.value.idCategoria,
     }
 
     if(this.datosProducto == null){
@@ -87,10 +88,10 @@ export class ModalProductoComponent implements OnInit{
       this._productoServicio.guardar(_producto).subscribe({
         next: (data) => {
           if(data.status){
-            this._utilidadServicio.mostrarAlerta("El producto fue registrado", "Exito");
+            this._utilidadServicio.mostrarAlerta(data.msg, "Exito");
             this.modalActual.close("true");
           }else
-            this._utilidadServicio.mostrarAlerta("No se pudo registrar el producto", "Error");
+            this._utilidadServicio.mostrarAlerta(data.msg, "Error");
         },
         error:(e)=>{}
       })
@@ -98,8 +99,9 @@ export class ModalProductoComponent implements OnInit{
     }else{
       this._productoServicio.editar(_producto.idProducto,_producto).subscribe({
         next: (data) => {
+          
           if(data.status){
-            this._utilidadServicio.mostrarAlerta("El producto fue editado", "Exito");
+            this._utilidadServicio.mostrarAlerta(data.msg, "Exito");
             this.modalActual.close("true");
           }else
             this._utilidadServicio.mostrarAlerta(data.msg, "Error");

@@ -53,7 +53,7 @@ export class ModalProveedorComponent implements OnInit{
       this.formularioProveedor.patchValue({
         nombre: this.datosProveedor.nombre,
         apePaterno: this.datosProveedor.apePaterno,
-        apellidos: this.datosProveedor.apeMaterno,
+        apeMaterno: this.datosProveedor.apeMaterno,
         ci: this.datosProveedor.ci,
         empresa: this.datosProveedor.empresa,
         celular: this.datosProveedor.celular,
@@ -84,7 +84,7 @@ export class ModalProveedorComponent implements OnInit{
             this._utilidadServicio.mostrarAlerta("El proveedor fue registrado", "Exito");
             this.modalActual.close("true");
           }else
-            this._utilidadServicio.mostrarAlerta("No se pudo registrar el proveedor", "Error");
+            this._utilidadServicio.mostrarAlerta(data.msg, "Error");
         },
         error:(e)=>{}
       })
@@ -93,7 +93,7 @@ export class ModalProveedorComponent implements OnInit{
       this._proveedorServicio.editar(_proveedor.idProveedor,_proveedor).subscribe({
         next: (data) => {
           if(data.status){
-            this._utilidadServicio.mostrarAlerta("El proveedor fue editado", "Exito");
+            this._utilidadServicio.mostrarAlerta(data.msg, "Exito");
             this.modalActual.close("true");
           }else
             this._utilidadServicio.mostrarAlerta(data.msg, "Error");

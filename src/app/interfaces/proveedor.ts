@@ -3,8 +3,8 @@ export interface Proveedor {
   nombre: string,
   apePaterno: string,
   apeMaterno: string,
-  estaActivo: number,
   ci: string,
   empresa: string,
   celular: string
+  estaActivo: number,
 }

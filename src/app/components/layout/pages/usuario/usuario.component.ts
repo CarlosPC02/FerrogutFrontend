@@ -90,10 +90,12 @@ export class UsuarioComponent implements OnInit, AfterViewInit{
 
     }).then((resultado)=>{
       if(resultado.isConfirmed){
+        console.log(usuario.idUser);
         this._usuarioServicio.eliminar(usuario.idUser).subscribe({
           next:(data)=>{
             if(data.status){
-              this._utilidadServicio.mostrarAlerta("El usuario fue eliminado", "Listo!");
+
+              this._utilidadServicio.mostrarAlerta(data.msg, "Listo!");
               this.obtenerUsuarios();
             }else
 

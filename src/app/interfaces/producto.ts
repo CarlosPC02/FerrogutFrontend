@@ -4,6 +4,6 @@ export interface Producto {
   descripcion: string,
   precio: string,
   codigoBarras: string,
-  marca: number,
+  marca: string,
   idCategoria: number,
 }

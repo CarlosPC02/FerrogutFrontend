@@ -66,7 +66,7 @@ export class ModalUsuarioComponent implements OnInit{
         nombres: this.datosUsuario.nombres,
         apellidos: this.datosUsuario.apellidos,
         ci: this.datosUsuario.ci,
-        descripcion: this.datosUsuario.descripcion,
+        //descripcion: this.datosUsuario.descripcion, //
         idRol: this.datosUsuario.idRol,
         userName: this.datosUsuario.userName,
         password: this.datosUsuario.password,
@@ -85,7 +85,7 @@ export class ModalUsuarioComponent implements OnInit{
       ci: this.formularioUsuario.value.ci,
       userName: this.formularioUsuario.value.userName,
       idRol: this.formularioUsuario.value.idRol,
-      descripcion: "",
+      //descripcion: "", //
       password: this.formularioUsuario.value.password,
       estaActivo: parseInt (this.formularioUsuario.value.esActivo),
     }

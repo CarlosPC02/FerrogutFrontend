@@ -4,6 +4,7 @@ import { HttpClient} from "@angular/common/http";
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ResponseApi } from '../interfaces/response-api';
+
 import { Login } from '../interfaces/login';
 import { Usuario } from '../interfaces/usuario';
 
@@ -14,9 +15,7 @@ export class UsuarioService {
 
   private urlApi: string = environment.endpoint + "usuario/";
 
-  constructor(private http:HttpClient) {
-
-  }
+  constructor(private http:HttpClient) { }
 
 
   iniciarSesion (request: Login):Observable<ResponseApi>{

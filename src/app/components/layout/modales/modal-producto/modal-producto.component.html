@@ -13,6 +13,15 @@
 
       <mat-grid-tile>
         <mat-form-field appearance="outline">
+          <mat-label>Descripcion</mat-label>
+          <input title="Nombre del Producto" matInput autocomplete="off" formControlName="descripcion">
+          <mat-icon matSuffix>account-box</mat-icon>
+        </mat-form-field>
+      </mat-grid-tile>
+
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
           <mat-label>Precio</mat-label>
           <input title="Precio" matInput autocomplete="off" formControlName="precio">
           <mat-icon matSuffix>credit-card</mat-icon>
@@ -30,7 +39,7 @@
       <mat-grid-tile>
         <mat-form-field appearance="outline">
           <mat-label>Marca</mat-label>
-          <input title="Marca" matInput autocomplete="off" formControlName="Marca">
+          <input title="Marca" matInput autocomplete="off" formControlName="marca">
           <mat-icon matSuffix>user</mat-icon>
         </mat-form-field>
       </mat-grid-tile>
@@ -38,7 +47,7 @@
       <mat-grid-tile>
         <mat-form-field appearance="outline">
           <mat-label>Categoria</mat-label>
-          <mat-select formControlName="idRol">
+          <mat-select formControlName="idCategoria">
             <mat-option *ngFor="let item of listaCategorias" [value]="item.idCategoria">
               {{item.nombreCategoria}}
             </mat-option>
