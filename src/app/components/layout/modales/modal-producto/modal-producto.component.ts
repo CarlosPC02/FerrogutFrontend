@@ -33,11 +33,13 @@ export class ModalProductoComponent implements OnInit{
   ){
 
     this.formularioProducto = this.fb.group({
-      nombreProducto: ["", Validators.required],
-      descripcion: ["",Validators.required],
-      precio: ["",Validators.required],
-      codigoBarras: ["",Validators.required],
-      marca: ["",Validators.required],
+      nombreProducto: ["", [Validators.required, Validators.maxLength(50), Validators.pattern(/^[a-zA-ZáéíóúñÁÉÍÓÚÑ0-9.,\s]*$/)]],
+      descripcion: ["",[Validators.required, Validators.maxLength(50), Validators.pattern(/^[a-zA-ZáéíóúñÁÉÍÓÚÑ0-9.,\s]*$/)]],
+      precio: ["",[Validators.required, Validators.maxLength(9), Validators.pattern(/^[0-9]+(\.[0-9]{1,2})?$/)]],
+      codigoBarras: ["",[Validators.required, Validators.maxLength(20), Validators.pattern(/^[a-zA-ZáéíóúñÁÉÍÓÚÑ0-9.,\s]*$/)]],
+      marca: ["",[Validators.required, Validators.maxLength(50), Validators.pattern(/^[a-zA-ZáéíóúñÁÉÍÓÚÑ0-9.,\s]*$/)]],
+      stock: ["",[Validators.required, Validators.maxLength(9), Validators.pattern(/^[0-9\s]*$/)]],
+      stockMinimo: ["",[Validators.required, Validators.maxLength(9), Validators.pattern(/^[0-9\s]*$/)]],
       idCategoria: ["",Validators.required],
     });
 
@@ -48,7 +50,6 @@ export class ModalProductoComponent implements OnInit{
 
     this._categoriaServicio.lista().subscribe({
       next:(data) =>{
-        console.log(data);
         if(data.status) this.listaCategorias = data.value;
 
       },
@@ -62,9 +63,11 @@ export class ModalProductoComponent implements OnInit{
       this.formularioProducto.patchValue({
         nombreProducto: this.datosProducto.nombreProducto,
         descripcion: this.datosProducto.descripcion,
+        precio: String(this.datosProducto.precio),
         codigoBarras: this.datosProducto.codigoBarras,
         marca: this.datosProducto.marca,
-        precio: String(this.datosProducto.precio),
+        stock: String(this.datosProducto.stock),
+        stockMinimo: String(this.datosProducto.stockMinimo),
         idCategoria: this.datosProducto.idCategoria,
 
       })
@@ -76,10 +79,12 @@ export class ModalProductoComponent implements OnInit{
     const _producto: Producto = {
       idProducto : this.datosProducto == null ? 0: this.datosProducto.idProducto,
       nombreProducto: this.formularioProducto.value.nombreProducto,
-      marca: this.formularioProducto.value.marca,
-      codigoBarras: this.formularioProducto.value.codigoBarras,
       descripcion: this.formularioProducto.value.descripcion,
       precio: this.formularioProducto.value.precio,
+      codigoBarras: this.formularioProducto.value.codigoBarras,
+      marca: this.formularioProducto.value.marca,
+      stock: this.formularioProducto.value.stock,
+      stockMinimo: this.formularioProducto.value.stockMinimo,
       idCategoria: this.formularioProducto.value.idCategoria,
     }
 
@@ -97,9 +102,9 @@ export class ModalProductoComponent implements OnInit{
       })
       //Editar
     }else{
-      this._productoServicio.editar(_producto.idProducto,_producto).subscribe({
+      this._productoServicio.editar(_producto.idProducto, _producto).subscribe({
         next: (data) => {
-          
+
           if(data.status){
             this._utilidadServicio.mostrarAlerta(data.msg, "Exito");
             this.modalActual.close("true");

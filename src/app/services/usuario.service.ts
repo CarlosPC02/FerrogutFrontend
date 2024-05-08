@@ -26,6 +26,7 @@ export class UsuarioService {
     return this.http.get<ResponseApi>(`${this.urlApi}index`)
 
   }
+  
 
   guardar(request: Usuario):Observable<ResponseApi>{
     return this.http.post<ResponseApi>(`${this.urlApi}create`, request)

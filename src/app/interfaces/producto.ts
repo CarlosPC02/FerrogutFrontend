@@ -5,5 +5,7 @@ export interface Producto {
   precio: string,
   codigoBarras: string,
   marca: string,
+  stock: number,
+  stockMinimo: number,
   idCategoria: number,
 }

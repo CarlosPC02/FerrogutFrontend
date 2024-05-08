@@ -3,13 +3,13 @@
 <mat-card style="margin: 20px 40px 40px 40px;">
   <br>
   <mat-card-title>
-    <button mat-raised-button color="primary" (click)="nuevoUsuario()">
+    <button style="margin: 5px 10px 10px 10px;" mat-raised-button color="primary" (click)="nuevoUsuario()">
       <mat-icon mat-list-icon>add</mat-icon>Nuevo Usuario
     </button>
   </mat-card-title>
-  <br>
-  <mat-divider></mat-divider>
 
+  <mat-divider></mat-divider>
+  <br>
   <mat-card-content class="dashboard-card-content">
     <mat-form-field appearance="outline" >
       <mat-label>Buscar</mat-label>
@@ -38,11 +38,6 @@
         <ng-container matColumnDef="ci">
           <th mat-header-cell *matHeaderCellDef> Carnet </th>
           <td mat-cell *matCellDef="let element"> {{element.ci}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="userName">
-          <th mat-header-cell *matHeaderCellDef> Nombre de Usuario </th>
-          <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
         </ng-container>
 
         <ng-container matColumnDef="rolDescripcion">

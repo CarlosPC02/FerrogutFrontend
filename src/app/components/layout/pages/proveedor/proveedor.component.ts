@@ -18,7 +18,7 @@ import Swal from 'sweetalert2';
 })
 export class ProveedorComponent implements OnInit, AfterViewInit{
 
-  columnasTable: string[] = ['id','nombre','apePaterno', 'apeMaterno','apeMaterno','ci','empresa','celular','estaActivo', 'acciones' ] ;
+  columnasTable: string[] = ['id','nombre','apePaterno', 'apeMaterno','ci','empresa','celular','estaActivo', 'acciones' ] ;
   dataInicio : Proveedor [] = [];
   dataListaProveedores = new MatTableDataSource(this.dataInicio);
   @ViewChild(MatPaginator) paginacionTabla!: MatPaginator;
@@ -36,11 +36,10 @@ export class ProveedorComponent implements OnInit, AfterViewInit{
     this._proveedorServicio.lista().subscribe({
       next:(data) =>{
         if(data.status){
-          console.log(data);
           this.dataListaProveedores.data = data.value;
 
         }else
-          this._utilidadServicio.mostrarAlerta("No se encontraron datos", "Oops!");
+          this._utilidadServicio.mostrarAlerta(data.msg, "Oops!");
 
       },
       error:(e)=>{}

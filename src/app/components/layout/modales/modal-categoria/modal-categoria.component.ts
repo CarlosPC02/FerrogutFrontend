@@ -30,7 +30,7 @@ export class ModalCategoriaComponent implements OnInit{
   ){
 
     this.formularioCategoria = this.fb.group({
-      nombreCategoria: ["", Validators.required],
+      nombreCategoria: ["", [Validators.required, Validators.maxLength(50), Validators.pattern(/^[a-zA-ZáéíóúñÁÉÍÓÚÑ0-9.,\s]*$/)]],
     });
 
     if(this.datosCategoria != null){

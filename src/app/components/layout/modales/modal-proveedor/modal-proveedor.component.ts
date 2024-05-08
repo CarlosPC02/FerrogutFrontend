@@ -30,12 +30,12 @@ export class ModalProveedorComponent implements OnInit{
   ){
 
     this.formularioProveedor = this.fb.group({
-      nombre: ["", Validators.required],
-      apePaterno: ["",Validators.required],
-      apeMaterno: ["",Validators.required],
-      ci: ["",Validators.required],
-      empresa: ["",Validators.required],
-      celular: ["",Validators.required],
+      nombre: ["", [Validators.required, Validators.maxLength(50), Validators.pattern(/^[a-zA-ZáéíóúñÁÉÍÓÚÑ0-9.,\s]*$/)]],
+      apePaterno: ["",[Validators.required, Validators.maxLength(50), Validators.pattern(/^[a-zA-ZáéíóúñÁÉÍÓÚÑ0-9.,\s]*$/)]],
+      apeMaterno: ["",[Validators.required, Validators.maxLength(50), Validators.pattern(/^[a-zA-ZáéíóúñÁÉÍÓÚÑ0-9.,\s]*$/)]],
+      ci: ["",[Validators.required, Validators.maxLength(8), Validators.pattern(/^[0-9\s]*$/)]],
+      empresa: ["",[Validators.required, Validators.maxLength(50), Validators.pattern(/^[a-zA-ZáéíóúñÁÉÍÓÚÑ0-9.,\s]*$/)]],
+      celular: ["",[Validators.required, Validators.maxLength(10), Validators.pattern(/^[0-9\s]*$/)]],
       estaActivo: ['1',Validators.required],
 
     });

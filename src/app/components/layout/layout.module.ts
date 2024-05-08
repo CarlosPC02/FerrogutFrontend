@@ -12,8 +12,6 @@ import { SharedModule } from 'src/app/reutilizable/shared/shared.module';
 import { ModalUsuarioComponent } from './modales/modal-usuario/modal-usuario.component';
 import { CategoriaComponent } from './pages/categoria/categoria.component';
 import { ModalCategoriaComponent } from './modales/modal-categoria/modal-categoria.component';
-import { ModalSucursalComponent } from './modales/modal-sucursal/modal-sucursal.component';
-import { SucursalComponent } from './pages/sucursal/sucursal.component';
 import { ProveedorComponent } from './pages/proveedor/proveedor.component';
 import { ModalProveedorComponent } from './modales/modal-proveedor/modal-proveedor.component';
 import { ModalProductoComponent } from './modales/modal-producto/modal-producto.component';
@@ -30,8 +28,6 @@ import { ModalProductoComponent } from './modales/modal-producto/modal-producto.
     ModalUsuarioComponent,
     CategoriaComponent,
     ModalCategoriaComponent,
-    ModalSucursalComponent,
-    SucursalComponent,
     ProveedorComponent,
     ModalProveedorComponent,
     ModalProductoComponent

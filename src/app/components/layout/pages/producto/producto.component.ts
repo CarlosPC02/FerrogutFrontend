@@ -18,7 +18,7 @@ import Swal from 'sweetalert2';
 })
 export class ProductoComponent implements OnInit, AfterViewInit{
 
-  columnasTable: string[] = ['id','nombre', 'descripcion', 'marca', 'precio', 'codigoBarras',  'categoria','acciones' ] ;
+  columnasTable: string[] = ['id','nombre', 'descripcion', 'precio', 'codigoBarras', 'marca',  'stock', 'stockMinimo',  'categoria','acciones' ] ;
   dataInicio : Producto [] = [];
   dataListaProductos = new MatTableDataSource(this.dataInicio);
   @ViewChild(MatPaginator) paginacionTabla!: MatPaginator;
@@ -36,7 +36,6 @@ export class ProductoComponent implements OnInit, AfterViewInit{
     this._productoServicio.lista().subscribe({
       next:(data) =>{
         if(data.status){
-          console.log(data);
           this.dataListaProductos.data = data.value;
 
         }else
@@ -90,7 +89,7 @@ export class ProductoComponent implements OnInit, AfterViewInit{
       if(resultado.isConfirmed){
         this._productoServicio.eliminar(producto.idProducto).subscribe({
           next:(data)=>{
-            
+
             if(data.status){
               this._utilidadServicio.mostrarAlerta(data.msg, "Listo!");
               this.obtenerProductos();

@@ -34,13 +34,13 @@ export class ModalUsuarioComponent implements OnInit{
   ){
 
     this.formularioUsuario = this.fb.group({
-      nombres: ["", Validators.required],
-      apellidos: ["",Validators.required],
-      ci: ["",Validators.required],
-      userName: ["",Validators.required],
+      nombres: ['', [Validators.required, Validators.maxLength(50), Validators.pattern(/^[a-zA-ZáéíóúñÁÉÍÓÚÑ0-9.,\s]*$/)]],
+      apellidos: ["",[Validators.required, Validators.maxLength(50), Validators.pattern(/^[a-zA-ZáéíóúñÁÉÍÓÚÑ0-9.,\s]*$/)]],
+      ci: ["",[Validators.required, Validators.maxLength(9), Validators.pattern(/^[0-9\s]*$/)]],
+      userName: ["",[Validators.required, Validators.maxLength(50), Validators.pattern(/^[a-zA-ZáéíóúñÁÉÍÓÚÑ0-9.,\s]*$/)]],
       idRol: ["",Validators.required],
-      password: ["",Validators.required],
-      esActivo: ['1',Validators.required],
+      password: ["",[Validators.required, Validators.maxLength(50), Validators.pattern(/^[a-zA-ZáéíóúñÁÉÍÓÚÑ0-9.,\s]*$/)]],
+      estaActivo: ['1',Validators.required],
 
     });
 
@@ -51,7 +51,6 @@ export class ModalUsuarioComponent implements OnInit{
 
     this._rolServicio.lista().subscribe({
       next:(data) =>{
-        console.log(data);
         if(data.status) this.listaRoles = data.value;
 
       },
@@ -66,11 +65,11 @@ export class ModalUsuarioComponent implements OnInit{
         nombres: this.datosUsuario.nombres,
         apellidos: this.datosUsuario.apellidos,
         ci: this.datosUsuario.ci,
-        //descripcion: this.datosUsuario.descripcion, //
+        descripcion: this.datosUsuario.descripcion, //
         idRol: this.datosUsuario.idRol,
         userName: this.datosUsuario.userName,
         password: this.datosUsuario.password,
-        esActivo: String(this.datosUsuario.estaActivo),
+        estaActivo: String(this.datosUsuario.estaActivo),
 
       })
     }
@@ -85,9 +84,9 @@ export class ModalUsuarioComponent implements OnInit{
       ci: this.formularioUsuario.value.ci,
       userName: this.formularioUsuario.value.userName,
       idRol: this.formularioUsuario.value.idRol,
-      //descripcion: "", //
+      descripcion: "", //
       password: this.formularioUsuario.value.password,
-      estaActivo: parseInt (this.formularioUsuario.value.esActivo),
+      estaActivo: parseInt (this.formularioUsuario.value.estaActivo),
     }
 
     if(this.datosUsuario == null){
@@ -95,24 +94,28 @@ export class ModalUsuarioComponent implements OnInit{
       this._usuarioServicio.guardar(_usuario).subscribe({
         next: (data) => {
           if(data.status){
-            this._utilidadServicio.mostrarAlerta("El usuario fue registrado", "Exito");
+            this._utilidadServicio.mostrarAlerta(data.msg, "Exito");
             this.modalActual.close("true");
           }else
-            this._utilidadServicio.mostrarAlerta("No se pudo registrar el usuario", "Error");
+            this._utilidadServicio.mostrarAlerta(data.msg, "Error");
         },
-        error:(e)=>{}
+        error:(e)=>{
+          console.log(e);
+        }
       })
       //Editar
     }else{
       this._usuarioServicio.editar(_usuario.idUser,_usuario).subscribe({
         next: (data) => {
           if(data.status){
-            this._utilidadServicio.mostrarAlerta("El usuario fue editado", "Exito");
+            this._utilidadServicio.mostrarAlerta(data.msg, "Exito");
             this.modalActual.close("true");
           }else
             this._utilidadServicio.mostrarAlerta(data.msg, "Error");
         },
-        error:(e)=>{}
+        error:(e)=>{
+          console.log(e);
+        }
       })
 
     }
