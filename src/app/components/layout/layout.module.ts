@@ -15,6 +15,10 @@ import { ModalCategoriaComponent } from './modales/modal-categoria/modal-categor
 import { ProveedorComponent } from './pages/proveedor/proveedor.component';
 import { ModalProveedorComponent } from './modales/modal-proveedor/modal-proveedor.component';
 import { ModalProductoComponent } from './modales/modal-producto/modal-producto.component';
+import { ModalClienteComponent } from './modales/modal-cliente/modal-cliente.component';
+import { ClienteComponent } from './pages/cliente/cliente.component';
+import { AdquisicionComponent } from './pages/adquisicion/adquisicion.component';
+import { HistorialadquisicionComponent } from './pages/historialadquisicion/historialadquisicion.component';
 
 
 @NgModule({
@@ -30,7 +34,11 @@ import { ModalProductoComponent } from './modales/modal-producto/modal-producto.
     ModalCategoriaComponent,
     ProveedorComponent,
     ModalProveedorComponent,
-    ModalProductoComponent
+    ModalProductoComponent,
+    ModalClienteComponent,
+    ClienteComponent,
+    AdquisicionComponent,
+    HistorialadquisicionComponent,
   ],
   imports: [
     CommonModule,

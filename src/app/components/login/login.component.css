@@ -23,3 +23,19 @@
 .full-width{
   width: 80%
 }
+
+
+.background-image {
+  background-image: url('src\assets\image\ferro.jpg'); /* Reemplaza 'ruta/a/la/imagen.jpg' con la ruta de tu imagen */
+  background-size: cover;
+  background-position: center;
+  height: 100vh; /* Ajusta la altura según tus necesidades */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginCard {
+  background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente para el formulario */
+  /* Añade otros estilos necesarios para el formulario */
+}

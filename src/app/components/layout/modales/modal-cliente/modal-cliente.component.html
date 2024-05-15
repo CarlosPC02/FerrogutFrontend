@@ -1,0 +1,42 @@
+<h2 mat-dialog-title>{{tituloAccion}} Cliente</h2>
+<mat-dialog-content>
+  <form [formGroup]="formularioCliente">
+    <mat-grid-list cols="1" rowHeight="80px">
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input title="Nombre" matInput autocomplete="off" formControlName="nombres">
+          <mat-icon matSuffix>contact_page</mat-icon>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Apellidos</mat-label>
+          <input title="Apellidos" matInput autocomplete="off" formControlName="apellidos">
+          <mat-icon matSuffix>contact_page</mat-icon>
+        </mat-form-field>
+      </mat-grid-tile>
+
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Tipo</mat-label>
+          <mat-select formControlName="esPreferencial">
+            <mat-option value="1">Preferencial</mat-option>
+            <mat-option value="0">No es Preferencial</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+
+    </mat-grid-list>
+  </form>
+
+</mat-dialog-content>
+
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close color="warn">Volver</button>
+  <button mat-raised-button color="primary" [disabled]="formularioCliente.invalid" (click)="guardarEditar_Cliente()">{{botonAccion}}</button>
+</mat-dialog-actions>

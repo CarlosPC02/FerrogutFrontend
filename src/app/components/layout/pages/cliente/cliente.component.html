@@ -1,0 +1,73 @@
+<h1 style="margin: 20px 0px 0px 40px;">Cliente</h1>
+
+<mat-card style="margin: 20px 40px 40px 40px;">
+  <br>
+  <mat-card-title>
+    <button style="margin: 5px 10px 10px 10px;" mat-raised-button color="primary" (click)="nuevoCliente()">
+      <mat-icon mat-list-icon>add</mat-icon>Nuevo Cliente
+    </button>
+  </mat-card-title>
+
+  <mat-divider></mat-divider>
+  <br>
+  <mat-card-content class="dashboard-card-content">
+    <mat-form-field appearance="outline" >
+      <mat-label>Buscar</mat-label>
+      <input title="Buscar" matInput (keyup)="aplicarFiltroTabla($event)" #input>
+    </mat-form-field>
+
+    <div class="mat-elevation-z2">
+
+      <table mat-table [dataSource]="dataListaClientes">
+
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> Id </th>
+          <td mat-cell *matCellDef="let element"> {{element.idCliente}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nombres">
+          <th mat-header-cell *matHeaderCellDef> Nombres </th>
+          <td mat-cell *matCellDef="let element"> {{element.nombres}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="apellidos">
+          <th mat-header-cell *matHeaderCellDef> Apellidos</th>
+          <td mat-cell *matCellDef="let element"> {{element.apellidos}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="esPreferencial">
+          <th mat-header-cell *matHeaderCellDef> Estado </th>
+          <td mat-cell *matCellDef="let element"> {{ element.esPreferencial === 1 ? "Preferencial" :  "No es Preferencial"}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef style="width:80px;"> Acciones </th>
+          <td mat-cell *matCellDef="let element">
+
+            <button mat-icon-button color="primary" (click)="editarCliente(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+
+            <button mat-icon-button color="warn" (click)="eliminarCliente(element)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnasTable"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnasTable;"></tr>
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No hay datos que coincidan con el filtro "{{input.value}}"</td>
+        </tr>
+
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons>
+      </mat-paginator>
+
+    </div>
+  </mat-card-content>
+
+</mat-card>
+

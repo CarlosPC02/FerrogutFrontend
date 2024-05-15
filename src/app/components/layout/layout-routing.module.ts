@@ -9,7 +9,7 @@ import { HistorialventaComponent } from './pages/historialventa/historialventa.c
 import { ReporteComponent } from './pages/reporte/reporte.component';
 import { CategoriaComponent } from './pages/categoria/categoria.component';
 import { ProveedorComponent } from './pages/proveedor/proveedor.component';
-
+import { ClienteComponent } from './pages/cliente/cliente.component';
 
 
 const routes: Routes = [{
@@ -22,6 +22,7 @@ const routes: Routes = [{
     {path:'categoria', component:CategoriaComponent},
     {path:'producto', component:ProductoComponent},
     {path:'proveedor', component:ProveedorComponent},
+    {path:'cliente', component:ClienteComponent},
     // {path:'inventario', component:InventarioComponent},
     {path:'venta', component:VentaComponent},
     // {path:'historial_venta', component:HistorialventaComponent},

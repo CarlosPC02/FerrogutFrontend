@@ -1,5 +1,6 @@
 export interface Cliente {
   idCliente: number,
-  nombreCompleto: string,
+  nombres: string,
+  apellidos: string,
   esPreferencial: number,
 }

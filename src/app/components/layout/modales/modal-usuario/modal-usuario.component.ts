@@ -37,9 +37,9 @@ export class ModalUsuarioComponent implements OnInit{
       nombres: ['', [Validators.required, Validators.maxLength(50), Validators.pattern(/^[a-zA-ZáéíóúñÁÉÍÓÚÑ0-9.,\s]*$/)]],
       apellidos: ["",[Validators.required, Validators.maxLength(50), Validators.pattern(/^[a-zA-ZáéíóúñÁÉÍÓÚÑ0-9.,\s]*$/)]],
       ci: ["",[Validators.required, Validators.maxLength(9), Validators.pattern(/^[0-9\s]*$/)]],
-      userName: ["",[Validators.required, Validators.maxLength(50), Validators.pattern(/^[a-zA-ZáéíóúñÁÉÍÓÚÑ0-9.,\s]*$/)]],
+      userName: ["",[Validators.required,Validators.pattern(/^[a-zA-ZáéíóúñÁÉÍÓÚÑ0-9.,\s]*$/)]],
       idRol: ["",Validators.required],
-      password: ["",[Validators.required, Validators.maxLength(50), Validators.pattern(/^[a-zA-ZáéíóúñÁÉÍÓÚÑ0-9.,\s]*$/)]],
+      password: ["",[Validators.required,Validators.pattern(/^[a-zA-ZáéíóúñÁÉÍÓÚÑ0-9.,\s]*$/)]],
       estaActivo: ['1',Validators.required],
 
     });

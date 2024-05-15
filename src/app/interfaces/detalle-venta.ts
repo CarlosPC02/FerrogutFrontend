@@ -1,9 +1,10 @@
 export interface DetalleVenta {
-  idDetalleVenta: number,
   idProducto: number,
-  idVenta: number;
   descripcionProducto: string,
   cantidad: number,
-  entregado: string,
+  precioTexto: string,
+  entregado?: boolean,
   subtotalTexto: string,
+  idVenta?: number,
+  idDetalleVenta?: number,
 }
