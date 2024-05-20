@@ -10,7 +10,7 @@ import { ReporteComponent } from './pages/reporte/reporte.component';
 import { CategoriaComponent } from './pages/categoria/categoria.component';
 import { ProveedorComponent } from './pages/proveedor/proveedor.component';
 import { ClienteComponent } from './pages/cliente/cliente.component';
-
+import { AdquisicionComponent } from './pages/adquisicion/adquisicion.component'
 
 const routes: Routes = [{
   path:'',
@@ -25,6 +25,7 @@ const routes: Routes = [{
     {path:'cliente', component:ClienteComponent},
     // {path:'inventario', component:InventarioComponent},
     {path:'venta', component:VentaComponent},
+    {path:'adquisicion', component:AdquisicionComponent},
     // {path:'historial_venta', component:HistorialventaComponent},
     // {path:'reporte', component:ReporteComponent},
   ]

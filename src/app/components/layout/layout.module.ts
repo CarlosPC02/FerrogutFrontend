@@ -19,6 +19,7 @@ import { ModalClienteComponent } from './modales/modal-cliente/modal-cliente.com
 import { ClienteComponent } from './pages/cliente/cliente.component';
 import { AdquisicionComponent } from './pages/adquisicion/adquisicion.component';
 import { HistorialadquisicionComponent } from './pages/historialadquisicion/historialadquisicion.component';
+import { ModalDetalleVentaComponent } from './modales/modal-detalle-venta/modal-detalle-venta.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { HistorialadquisicionComponent } from './pages/historialadquisicion/hist
     ClienteComponent,
     AdquisicionComponent,
     HistorialadquisicionComponent,
+    ModalDetalleVentaComponent,
   ],
   imports: [
     CommonModule,

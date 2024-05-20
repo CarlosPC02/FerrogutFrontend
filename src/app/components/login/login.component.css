@@ -39,3 +39,9 @@
   background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente para el formulario */
   /* Añade otros estilos necesarios para el formulario */
 }
+.logo {
+  display: block;
+  margin: 10px auto;
+  max-width: 100px; /* Ajusta el tamaño del logo según tus necesidades */
+  height: auto;
+}

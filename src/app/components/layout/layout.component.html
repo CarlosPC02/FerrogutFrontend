@@ -1,11 +1,16 @@
 <!-- header -->
 <mat-toolbar color="primary">
   <mat-toolbar-row>
+
+
     <h1>Ferrogut</h1>
 
     <button mat-icon-button (click)="sidenav.toggle();">
       <mat-icon>menu</mat-icon>
     </button>
+
+    <span class="spacer"></span>
+    <img src="assets/image/logo.png" alt="Ferrogut Logo" class="toolbar-logo">
   </mat-toolbar-row>
 
 </mat-toolbar>
@@ -15,10 +20,10 @@
 
     <mat-nav-list>
 
-      <mat-list-item routerLink="/pages/dashboard">
+      <!-- <mat-list-item routerLink="/pages/dashboard">
         <mat-icon matListItemIcon>dashboard</mat-icon>
         <a mat-line>Dashboard</a>
-      </mat-list-item>
+      </mat-list-item> -->
 
       <mat-list-item routerLink="/pages/usuario">
         <mat-icon matListItemIcon>group</mat-icon>
@@ -48,6 +53,11 @@
       <mat-list-item routerLink="/pages/venta">
         <mat-icon matListItemIcon>currency_exchange</mat-icon>
         <a mat-line>Ventas</a>
+      </mat-list-item>
+
+      <mat-list-item routerLink="/pages/adquisicion">
+        <mat-icon matListItemIcon>fact_check</mat-icon>
+        <a mat-line>Adquisiciones</a>
       </mat-list-item>
 
       <!-- <mat-list-item routerLink="/pages/historial_venta">
