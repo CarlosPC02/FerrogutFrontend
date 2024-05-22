@@ -1,8 +1,8 @@
 import { DetalleAdquisicion } from "./detalle-adquisicion";
 
 export interface Adquisicion {
-  idVenta?: number,
-  fechaVenta?: string,
+  idAdquisicion?: number,
+  fechaAdquisicion?: string,
   esFactura: number,
   totalTexto?: string,
   idUser: number;

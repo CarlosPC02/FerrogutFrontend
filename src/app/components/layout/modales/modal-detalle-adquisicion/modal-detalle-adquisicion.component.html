@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Detalle Venta</h2>
+<h2 mat-dialog-title>Detalle Adquisicion</h2>
 
 <mat-dialog-content>
     <mat-grid-list cols="4" rowHeight="70px">
@@ -12,8 +12,8 @@
 
       <mat-grid-tile>
         <mat-form-field appearance="fill" style="width: 95%;">
-          <mat-label>Numero de Venta</mat-label>
-          <input matInput title="Numero de Venta" [(ngModel)]="numeroDocumento">
+          <mat-label>Numero de Adquisicion</mat-label>
+          <input matInput title="Numero de Adquisicion" [(ngModel)]="numeroDocumento">
         </mat-form-field>
       </mat-grid-tile>
 
@@ -33,7 +33,7 @@
     </mat-grid-list>
 
     <h4>Lista de Productos</h4>
-    <table mat-table [dataSource]="detalleVenta" class="mat-elevation-z2">
+    <table mat-table [dataSource]="DetalleAdquisicion" class="mat-elevation-z2">
 
       <ng-container matColumnDef="producto">
         <th mat-header-cell *matHeaderCellDef> Producto </th>

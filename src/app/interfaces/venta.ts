@@ -4,7 +4,7 @@ export interface Venta {
   idVenta?: number,
   fechaVenta?: string,
   totalTexto?: string,
-  idUsuario: number;
+  idUser: number;
   idCliente: number;
   esFactura: number,
   estaFinalizado?: number,

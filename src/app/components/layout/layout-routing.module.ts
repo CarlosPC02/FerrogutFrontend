@@ -11,6 +11,7 @@ import { CategoriaComponent } from './pages/categoria/categoria.component';
 import { ProveedorComponent } from './pages/proveedor/proveedor.component';
 import { ClienteComponent } from './pages/cliente/cliente.component';
 import { AdquisicionComponent } from './pages/adquisicion/adquisicion.component'
+import { HistorialadquisicionComponent } from './pages/historialadquisicion/historialadquisicion.component';
 
 const routes: Routes = [{
   path:'',
@@ -26,7 +27,8 @@ const routes: Routes = [{
     // {path:'inventario', component:InventarioComponent},
     {path:'venta', component:VentaComponent},
     {path:'adquisicion', component:AdquisicionComponent},
-    // {path:'historial_venta', component:HistorialventaComponent},
+    {path:'historial_venta', component:HistorialventaComponent},
+    {path:'historial_adquisicion', component:HistorialadquisicionComponent},
     // {path:'reporte', component:ReporteComponent},
   ]
 }

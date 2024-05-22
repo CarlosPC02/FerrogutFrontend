@@ -25,12 +25,7 @@ export class ModalDetalleVentaComponent implements OnInit{
     this.facturado = _venta.esFactura;
     this.total = _venta.totalTexto;
     this.detalleVenta = _venta.detalleVenta;
-    
-
-
   }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 }

@@ -148,13 +148,14 @@ export class VentaComponent implements OnInit {
         totalTexto: String(this.totalPagar.toFixed(2)),
         detalleVenta: this.listaProductosParaVenta,
         idCliente: this.clienteSeleccionado.idCliente,
-        idUsuario: 6,
+        idUser: 6,
         estaFinalizado: 0,
       };
 
-      console.log(this.clienteSeleccionado.idCliente,);
 
-      this._ventaServicio.guardar(request).subscribe({
+      let array:any[]=[request,this.listaProductosParaVenta];
+
+      this._ventaServicio.guardar(array).subscribe({
         next: (response) => {
           if (response.status) {
             this.totalPagar = 0.00;
@@ -164,7 +165,7 @@ export class VentaComponent implements OnInit {
             Swal.fire({
               icon: 'success',
               title: 'Venta Registrada',
-              text: `Numero de Venta: ${response.value.idVenta}`
+              //text: `Numero de Venta: ${response.value.idVenta}`
             });
           } else {
             this._utilidadServicio.mostrarAlerta(response.msg, "Oops");

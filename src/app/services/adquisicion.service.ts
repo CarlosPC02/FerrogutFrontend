@@ -20,9 +20,14 @@ export class AdquisicionService {
     return this.http.post<ResponseApi>(`${this.urlApi}create`, request)
   }
 
-  eliminar(id: number):Observable<ResponseApi>{
-    return this.http.delete<ResponseApi>(`${this.urlApi}delete/${id}`)
+  historial(buscarPor:string, idVenta:number, fechaInicio:string, fechaFin:string):Observable<ResponseApi>{
+    return this.http.get<ResponseApi>(`${this.urlApi}historial?buscarPor=${buscarPor}&numeroVenta=${idVenta}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`)
   }
+
+  reporte(fechaInicio:string, fechaFin:string):Observable<ResponseApi>{
+    return this.http.get<ResponseApi>(`${this.urlApi}reporte?fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`)
+  }
+
 
 
 }
