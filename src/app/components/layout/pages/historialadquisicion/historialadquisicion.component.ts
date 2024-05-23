@@ -37,7 +37,7 @@ export class HistorialadquisicionComponent implements OnInit, AfterViewInit{
   formularioBusqueda:FormGroup;
   opcionesBusqueda: any [] =[
     {value: "fecha", descripcion: "Por fechas"},
-    {value: "numero", descripcion: "Numero venta"}
+    {value: "numero", descripcion: "Numero Adquisicion"}
   ];
   columnasTabla: string[]=["fechaRegistro", 'numeroDocumento', "facturado", "total", "accion"];
   dataInicio: Adquisicion [] = [];

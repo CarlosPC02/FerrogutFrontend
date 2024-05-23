@@ -41,7 +41,7 @@ export class CategoriaComponent implements OnInit, AfterViewInit{
           this.dataListaCategorias.data = data.value;
 
         }else
-          this._utilidadServicio.mostrarAlerta("No se encontraron datos", "Oops!");
+          this._utilidadServicio.mostrarAlerta(data.msg, "Oops!");
 
       },
       error:(e)=>{}
@@ -79,7 +79,7 @@ export class CategoriaComponent implements OnInit, AfterViewInit{
 
   eliminarCategoria(categoria: Categoria){
     Swal.fire({
-      title: 'Desea eliminar el usuario?',
+      title: 'Desea eliminar la categoria?',
       text: categoria.nombreCategoria,
       icon: "warning",
       confirmButtonColor: '#3085d6',
