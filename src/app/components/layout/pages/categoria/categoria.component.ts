@@ -37,7 +37,7 @@ export class CategoriaComponent implements OnInit, AfterViewInit{
     this._categoriaServicio.lista().subscribe({
       next:(data) =>{
         if(data.status){
-          console.log(data);
+          //console.log(data);
           this.dataListaCategorias.data = data.value;
 
         }else

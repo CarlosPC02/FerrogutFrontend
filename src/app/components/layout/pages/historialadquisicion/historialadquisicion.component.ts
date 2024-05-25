@@ -13,6 +13,7 @@ import { UtilidadService } from 'src/app/reutilizable/utilidad.service';
 import { Adquisicion } from 'src/app/interfaces/adquisicion';
 import { AdquisicionService } from '../../../../services/adquisicion.service';
 import { ModalDetalleAdquisicionComponent } from '../../modales/modal-detalle-adquisicion/modal-detalle-adquisicion.component';
+import { Envio } from 'src/app/interfaces/envio';
 
 
 export const MY_DATA_FORMATS ={
@@ -21,7 +22,7 @@ export const MY_DATA_FORMATS ={
   },
   display:{
     dateInput:'DD/MM/YYYY',
-    monthYearLabel:"MMMMM YYYY"
+    monthYearLabel:'DD/MM/YYYY'
   }
 }
 
@@ -82,20 +83,26 @@ export class HistorialadquisicionComponent implements OnInit, AfterViewInit{
     let _fechaFin: string = "";
 
     if(this.formularioBusqueda.value.buscarPor === "fecha"){
-      _fechaInicio = moment(this.formularioBusqueda.value.fechaInicio).format("DD/MM/YYYY");
-      _fechaFin = moment(this.formularioBusqueda.value.fechaFin).format("DD/MM/YYYY");
+      _fechaInicio = moment(this.formularioBusqueda.value.fechaInicio).format("YYYY/MM/DD");
+      _fechaFin = moment(this.formularioBusqueda.value.fechaFin).format("YYYY/MM/DD");
 
       if(_fechaInicio === "invalid date" || _fechaFin === "invalid date" ){
         this._utilidadServicio.mostrarAlerta("Debe ingresar ambas fechas", "Oops!");
         return;
       }
     }
+    let inicio = new Date(_fechaInicio);
+    let fin= new Date(_fechaFin);
+    const request: Envio = {
+      buscarPor: this.formularioBusqueda.value.buscarPor,
+      numero:parseInt(this.formularioBusqueda.value.numero),
+      fechaInicial: _fechaInicio,
+      fechaFinal: _fechaFin
+    };
+
 
     this._adquisicionServicio.historial(
-      this.formularioBusqueda.value.buscarPor,
-      this.formularioBusqueda.value.numero,
-      _fechaInicio,
-      _fechaFin
+      request
     ).subscribe({
       next:(data)=>{
         if(data.status)

@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ResponseApi } from '../interfaces/response-api';
 
-import { Venta } from '../interfaces/venta';
+import { Envio } from '../interfaces/envio';
 
 @Injectable({
   providedIn: 'root'
@@ -20,12 +20,12 @@ export class VentaService {
     return this.http.post<ResponseApi>(`${this.urlApi}create`, request)
   }
 
-  historial(buscarPor:string, idVenta:number, fechaInicio:string, fechaFin:string):Observable<ResponseApi>{
-    return this.http.get<ResponseApi>(`${this.urlApi}historial?buscarPor=${buscarPor}&numeroVenta=${idVenta}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`)
+  historial(request: Envio):Observable<ResponseApi>{
+    return this.http.post<ResponseApi>(`${this.urlApi}historial`, request)
   }
 
-  reporte(fechaInicio:string, fechaFin:string):Observable<ResponseApi>{
-    return this.http.get<ResponseApi>(`${this.urlApi}reporte?fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`)
+  listaDetalleVenta(id: number){
+    return this.http.get<ResponseApi>(`${environment.endpoint}detalleVenta/index/${id}`);
   }
 
 

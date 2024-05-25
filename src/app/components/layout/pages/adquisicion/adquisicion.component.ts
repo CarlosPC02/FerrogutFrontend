@@ -127,7 +127,7 @@ export class AdquisicionComponent implements OnInit {
       cantidad: _cantidad,
       precioUnitario: _precio,
       idAdquisicion: 1,
-      subtotalTexto: String (_total.toFixed(2)),
+      total: parseFloat (_total.toFixed(2)),
     })
 
     this.datosDetalleAdquisicion = new MatTableDataSource(this.listaProductosParaAdquisicion);
@@ -142,7 +142,7 @@ export class AdquisicionComponent implements OnInit {
   }
 
   eliminarProducto(detalle: DetalleAdquisicion){
-    this.totalPagar = this.totalPagar - parseFloat(detalle.subtotalTexto),
+    this.totalPagar = this.totalPagar - detalle.total,
     this.listaProductosParaAdquisicion = this.listaProductosParaAdquisicion.filter(p => p.idProducto != detalle.idProducto);
     this.datosDetalleAdquisicion = new MatTableDataSource(this.listaProductosParaAdquisicion);
   }
@@ -155,12 +155,12 @@ export class AdquisicionComponent implements OnInit {
 
       const request: Adquisicion = {
         esFactura:  parseInt(this.facturado),
-        totalTexto: String (this.totalPagar.toFixed(2)),
+        total: parseFloat( this.totalPagar.toFixed(2)),
         idProveedor: this.proveedorSeleccionado.idProveedor,
         idUser: 6,
         detalleAdquisicion: this.listaProductosParaAdquisicion,
       }
-      
+
       let array:any[]=[request,this.listaProductosParaAdquisicion];
 
 

@@ -3,7 +3,7 @@ export interface DetalleAdquisicion {
   descripcionProducto: string,
   cantidad: number,
   precioUnitario: number,
-  subtotalTexto: string,
+  total: number,
   idAdquisicion?: number,
   idDetalleAdquisicion?: number,
 }

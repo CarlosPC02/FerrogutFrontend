@@ -61,12 +61,12 @@
 
         <ng-container matColumnDef="fechaRegistro">
           <th mat-header-cell *matHeaderCellDef>Fecha Registro</th>
-          <td mat-cell *matCellDef="let element"> {{element.fechaRegistro}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.fechaAdquisicion | date:'dd-MM-yyyy'}} </td>
         </ng-container>
 
         <ng-container matColumnDef="numeroDocumento">
           <th mat-header-cell *matHeaderCellDef> Numero Documento </th>
-          <td mat-cell *matCellDef="let element"> {{element.idVenta}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.idAdquisicion}} </td>
         </ng-container>
 
         <ng-container matColumnDef="facturado">
@@ -76,7 +76,7 @@
 
         <ng-container matColumnDef="total">
           <th mat-header-cell *matHeaderCellDef> Total </th>
-          <td mat-cell *matCellDef="let element"> {{element.totalTexto}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.total}} </td>
         </ng-container>
 
         <ng-container matColumnDef="accion">

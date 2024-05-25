@@ -11,6 +11,13 @@
 
     <span class="spacer"></span>
     <img src="assets/image/logo.png" alt="Ferrogut Logo" class="toolbar-logo">
+    <label style="font-size: 14px; margin-right: 20px;">
+    {{userName}} - {{rolUsuario}}
+    </label>
+    <button title="Cerrar Sesion" mat-icon-button (click)="cerrarSesion()">
+      <mat-icon>logout</mat-icon>
+    </button>
+
   </mat-toolbar-row>
 
 </mat-toolbar>

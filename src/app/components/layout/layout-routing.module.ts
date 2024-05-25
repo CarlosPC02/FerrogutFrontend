@@ -12,11 +12,12 @@ import { ProveedorComponent } from './pages/proveedor/proveedor.component';
 import { ClienteComponent } from './pages/cliente/cliente.component';
 import { AdquisicionComponent } from './pages/adquisicion/adquisicion.component'
 import { HistorialadquisicionComponent } from './pages/historialadquisicion/historialadquisicion.component';
+import { authGuardGuard } from 'src/app/interfaces/auth-guard.guard';
 
 const routes: Routes = [{
   path:'',
   //path:",
-  component:LayoutComponent,
+  component:LayoutComponent, canActivateChild: [authGuardGuard],
   children:[
     {path:'dashboard', component:DashboardComponent},
     {path:'usuario', component:UsuarioComponent},

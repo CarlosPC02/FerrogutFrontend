@@ -20,6 +20,7 @@ export class UtilidadService {
 
   guardarSesionUsuario(usuarioSesion:Sesion){
     localStorage.setItem("usuario",JSON.stringify(usuarioSesion));
+    localStorage.setItem("token", usuarioSesion.token);
   }
 
   obtenerSesionUsuario(){
@@ -29,8 +30,13 @@ export class UtilidadService {
 
   }
 
+  getToken(){
+    return localStorage.getItem("token");
+  }
+
   eliminarSesionUsuario(){
     localStorage.removeItem("usuario");
+    localStorage.removeItem("token")
   }
 
 

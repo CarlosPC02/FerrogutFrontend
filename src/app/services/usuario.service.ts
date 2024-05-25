@@ -19,14 +19,14 @@ export class UsuarioService {
 
 
   iniciarSesion (request: Login):Observable<ResponseApi>{
-    return this.http.post<ResponseApi>(`${this.urlApi}IniciarSesion`, request)
+    return this.http.post<ResponseApi>(`${environment.endpoint}auth/login`, request)
   }
 
   lista():Observable<ResponseApi>{
     return this.http.get<ResponseApi>(`${this.urlApi}index`)
 
   }
-  
+
 
   guardar(request: Usuario):Observable<ResponseApi>{
     return this.http.post<ResponseApi>(`${this.urlApi}create`, request)

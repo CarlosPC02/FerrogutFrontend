@@ -39,8 +39,8 @@ export class LoginComponent implements OnInit {
   iniciarSesion(){
     this.mostrarLoading=true;
     const request:Login= {
-      userName : this.formularioLogin.value.userName,
-      password: this.formularioLogin.value.password
+      userName : String(this.formularioLogin.value.userName),
+      password: String( this.formularioLogin.value.password)
     }
 
     this._usuarioServicio.iniciarSesion(request).subscribe({
@@ -48,15 +48,17 @@ export class LoginComponent implements OnInit {
         if(data.status){
           this._utilidadServicio.guardarSesionUsuario(data.value);
           this.router.navigate(["pages"]);
+
         }else{
-          this._utilidadServicio.mostrarAlerta("No se encontraron coincidencias", "Opps!");
+          this._utilidadServicio.mostrarAlerta(data.msg, "Opps!");
         }
       },
       complete: () =>{
         this.mostrarLoading = false;
       },
-      error:()=>{
-        this._utilidadServicio.mostrarAlerta("Hubo un error", "Fallo");
+      error:(e)=>{
+        //console.log(e);
+        this._utilidadServicio.mostrarAlerta("Error", "Fallo");
       }
     })
   }

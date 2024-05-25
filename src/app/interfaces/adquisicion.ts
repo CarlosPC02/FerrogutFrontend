@@ -4,7 +4,7 @@ export interface Adquisicion {
   idAdquisicion?: number,
   fechaAdquisicion?: string,
   esFactura: number,
-  totalTexto?: string,
+  total: number,
   idUser: number;
   idProveedor: number;
   detalleAdquisicion: DetalleAdquisicion [],

@@ -13,6 +13,7 @@ import { ModalDetalleVentaComponent } from '../../modales/modal-detalle-venta/mo
 import { Venta } from 'src/app/interfaces/venta';
 import { VentaService } from 'src/app/services/venta.service';
 import { UtilidadService } from 'src/app/reutilizable/utilidad.service';
+import { Envio } from 'src/app/interfaces/envio';
 
 export const MY_DATA_FORMATS ={
   parse:{
@@ -84,8 +85,8 @@ export class HistorialventaComponent implements OnInit, AfterViewInit{
     let _fechaFin: string = "";
 
     if(this.formularioBusqueda.value.buscarPor === "fecha"){
-      _fechaInicio = moment(this.formularioBusqueda.value.fechaInicio).format("DD/MM/YYYY");
-      _fechaFin = moment(this.formularioBusqueda.value.fechaFin).format("DD/MM/YYYY");
+      _fechaInicio = moment(this.formularioBusqueda.value.fechaInicio).format("YYYY/MM/DD");
+      _fechaFin = moment(this.formularioBusqueda.value.fechaFin).format("YYYY/MM/DD");
 
       if(_fechaInicio === "invalid date" || _fechaFin === "invalid date" ){
         this._utilidadServicio.mostrarAlerta("Debe ingresar ambas fechas", "Oops!");
@@ -93,17 +94,22 @@ export class HistorialventaComponent implements OnInit, AfterViewInit{
       }
     }
 
-    this._ventaServicio.historial(
-      this.formularioBusqueda.value.buscarPor,
-      this.formularioBusqueda.value.numero,
-      _fechaInicio,
-      _fechaFin
-    ).subscribe({
+    let inicio = new Date(_fechaInicio);
+    let fin= new Date(_fechaFin);
+
+    const request: Envio = {
+      buscarPor:this.formularioBusqueda.value.buscarPor,
+      numero: parseInt(this.formularioBusqueda.value.numero),
+      fechaInicial: _fechaInicio,
+      fechaFinal: _fechaFin
+    };
+
+    this._ventaServicio.historial(request).subscribe({
       next:(data)=>{
         if(data.status)
           this.datosListaVenta=data.value;
         else
-        this._utilidadServicio.mostrarAlerta("No se encontraron datos", "Oops!");
+        this._utilidadServicio.mostrarAlerta(data.msg, "Oops!");
 
 
       },

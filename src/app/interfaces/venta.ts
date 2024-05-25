@@ -3,7 +3,7 @@ import { DetalleVenta } from "./detalle-venta";
 export interface Venta {
   idVenta?: number,
   fechaVenta?: string,
-  totalTexto?: string,
+  total?: number,
   idUser: number;
   idCliente: number;
   esFactura: number,

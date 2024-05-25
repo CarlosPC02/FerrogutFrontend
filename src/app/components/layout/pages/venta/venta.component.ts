@@ -145,7 +145,7 @@ export class VentaComponent implements OnInit {
 
       const request: Venta = {
         esFactura: this.facturado,
-        totalTexto: String(this.totalPagar.toFixed(2)),
+        total: parseFloat(this.totalPagar.toFixed(2)),
         detalleVenta: this.listaProductosParaVenta,
         idCliente: this.clienteSeleccionado.idCliente,
         idUser: 6,

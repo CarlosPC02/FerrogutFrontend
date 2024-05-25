@@ -3,4 +3,5 @@ export interface Sesion {
   nombre: string,
   username: string,
   rolDescripcion: string,
+  token: string
 }
