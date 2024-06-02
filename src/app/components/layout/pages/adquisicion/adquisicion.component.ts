@@ -40,6 +40,8 @@ export class AdquisicionComponent implements OnInit {
   columnasTabla: string[]=['producto', 'cantidad', 'precio', 'total', 'accion'];
   datosDetalleAdquisicion = new MatTableDataSource(this.listaProductosParaAdquisicion);
 
+  idUsuario:number = 0;
+
   constructor(
     private fb:FormBuilder,
     private _productoServicio: ProductoService,
@@ -50,8 +52,8 @@ export class AdquisicionComponent implements OnInit {
   ){
     this.formularioProductoAdquisicion = this.fb.group({
       producto: ["", Validators.required],
-      precio: ["", Validators.required],
-      cantidad: ["", Validators.required],
+      precio: ["", [Validators.required, Validators.maxLength(9), Validators.pattern(/^[0-9]+(\.[0-9]{1,2})?$/)]],
+      cantidad: ["", [Validators.required, Validators.maxLength(9), Validators.pattern(/^[0-9\s]*$/)]],
 
     });
 
@@ -86,7 +88,14 @@ export class AdquisicionComponent implements OnInit {
 
   }
 
-  ngOnInit():void{}
+  ngOnInit():void{
+    const usuarioResp = this._utilidadServicio.obtenerSesionUsuario();
+
+    if (usuarioResp && usuarioResp.usuario && usuarioResp.usuario.length > 0) {
+      const usuario = usuarioResp.usuario[0];
+      this.idUsuario = usuario.idUser;
+    }
+  }
 
   retornarProductosPorFiltro(busqueda: any):Producto[]{
     const valorBuscado = typeof busqueda === "string" ? busqueda.toLocaleLowerCase():busqueda.nombreProducto.toLocaleLowerCase();
@@ -116,6 +125,20 @@ export class AdquisicionComponent implements OnInit {
   }
 
   agregarProductoParaAdquisicion(){
+
+    const productoExistente = this.listaProductosParaAdquisicion.find(
+      p => p.idProducto === this.productoSeleccionado.idProducto
+    );
+
+    if (productoExistente) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Producto Duplicado',
+        text: 'Este producto ya está en la lista. Por favor, actualiza la cantidad, elimina el producto existente antes para poder agregarlo con la cantidad correcta.'
+      });
+      return;
+    }
+
     const _cantidad:number = parseInt(this.formularioProductoAdquisicion.value.cantidad);
     const _precio:number = parseFloat(this.formularioProductoAdquisicion.value.precio)
     const _total:number = _cantidad * _precio;
@@ -157,7 +180,7 @@ export class AdquisicionComponent implements OnInit {
         esFactura:  parseInt(this.facturado),
         total: parseFloat( this.totalPagar.toFixed(2)),
         idProveedor: this.proveedorSeleccionado.idProveedor,
-        idUser: 6,
+        idUser: this.idUsuario,
         detalleAdquisicion: this.listaProductosParaAdquisicion,
       }
 

@@ -41,6 +41,7 @@ export class VentaComponent implements OnInit {
   columnasTabla: string[] = ['producto', 'cantidad', 'precio', 'total', 'accion'];
   datosDetalleVenta = new MatTableDataSource(this.listaProductosParaVenta);
 
+  idUsuario: number = 0;
   constructor(
     private fb: FormBuilder,
     private _productoServicio: ProductoService,
@@ -50,7 +51,7 @@ export class VentaComponent implements OnInit {
   ) {
     this.formularioProductoVenta = this.fb.group({
       producto: ["", Validators.required],
-      cantidad: ["", Validators.required]
+      cantidad: ["", [Validators.required, Validators.maxLength(9), Validators.pattern(/^[0-9\s]*$/)]]
     });
 
     this._productoServicio.lista().subscribe({
@@ -82,7 +83,14 @@ export class VentaComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    const usuarioResp = this._utilidadServicio.obtenerSesionUsuario();
+
+    if (usuarioResp && usuarioResp.usuario && usuarioResp.usuario.length > 0) {
+      const usuario = usuarioResp.usuario[0];
+      this.idUsuario = usuario.idUser;
+    }
+   }
 
   retornarProductosPorFiltro(busqueda: any): Producto[] {
     const valorBuscado = typeof busqueda === "string" ? busqueda.toLocaleLowerCase() : busqueda.nombreProducto.toLocaleLowerCase();
@@ -111,6 +119,21 @@ export class VentaComponent implements OnInit {
   }
 
   agregarProductoParaVenta() {
+
+    const productoExistente = this.listaProductosParaVenta.find(
+      p => p.idProducto === this.productoSeleccionado.idProducto
+    );
+
+    if (productoExistente) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Producto Duplicado',
+        text: 'Este producto ya está en la lista. Por favor, actualiza la cantidad, elimina el producto existente antes para poder agregarlo con la cantidad correcta.'
+      });
+      return;
+    }
+
+
     const _cantidad: number = this.formularioProductoVenta.value.cantidad;
     const _precio: number = parseFloat(this.productoSeleccionado.precio);
     const _total: number = _cantidad * _precio;
@@ -148,7 +171,7 @@ export class VentaComponent implements OnInit {
         total: parseFloat(this.totalPagar.toFixed(2)),
         detalleVenta: this.listaProductosParaVenta,
         idCliente: this.clienteSeleccionado.idCliente,
-        idUser: 6,
+        idUser:  this.idUsuario,
         estaFinalizado: 0,
       };
 

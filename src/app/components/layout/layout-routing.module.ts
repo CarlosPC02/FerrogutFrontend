@@ -6,7 +6,6 @@ import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { ProductoComponent } from './pages/producto/producto.component';
 import { VentaComponent } from './pages/venta/venta.component';
 import { HistorialventaComponent } from './pages/historialventa/historialventa.component';
-import { ReporteComponent } from './pages/reporte/reporte.component';
 import { CategoriaComponent } from './pages/categoria/categoria.component';
 import { ProveedorComponent } from './pages/proveedor/proveedor.component';
 import { ClienteComponent } from './pages/cliente/cliente.component';

@@ -7,8 +7,8 @@ import { UtilidadService } from 'src/app/reutilizable/utilidad.service';
   styleUrls: ['./layout.component.css']
 })
 export class LayoutComponent implements OnInit{
-  userName: string ='';
-  rolUsuario: string = '';
+  nombres: string ='';
+  apellidos: string = '';
 
   constructor(private router:Router, private _utilidadServicio:UtilidadService){
 
@@ -16,14 +16,14 @@ export class LayoutComponent implements OnInit{
 
   ngOnInit(): void {
 
-    const usuario = this._utilidadServicio.obtenerSesionUsuario();
+    const usuarioResp = this._utilidadServicio.obtenerSesionUsuario();
 
-    if(usuario!=null){
-      this.userName = usuario.nombres;
-      this.rolUsuario = usuario.apellidos;
+    if (usuarioResp && usuarioResp.usuario && usuarioResp.usuario.length > 0) {
+      const usuario = usuarioResp.usuario[0];
+      this.nombres = usuario.nombres;
+      this.apellidos = usuario.apellidos;
     }
 
-    //console.log(usuario);
   }
 
 
@@ -31,4 +31,6 @@ export class LayoutComponent implements OnInit{
     this._utilidadServicio.eliminarSesionUsuario();
     this.router.navigate(['login']);
   }
+
+
 }

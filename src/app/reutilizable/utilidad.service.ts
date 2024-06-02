@@ -24,10 +24,15 @@ export class UtilidadService {
   }
 
   obtenerSesionUsuario(){
+    // const dataCadena = localStorage.getItem("usuario");
+    // const usuario = JSON.parse(dataCadena!);
+    // return usuario;
     const dataCadena = localStorage.getItem("usuario");
-    const usuario = JSON.parse(dataCadena!);
-    return usuario;
-
+    if (dataCadena) {
+      const usuario = JSON.parse(dataCadena);
+      return usuario;
+    }
+    return null;
   }
 
   getToken(){
@@ -36,7 +41,7 @@ export class UtilidadService {
 
   eliminarSesionUsuario(){
     localStorage.removeItem("usuario");
-    localStorage.removeItem("token")
+    localStorage.removeItem("token");
   }
 
 

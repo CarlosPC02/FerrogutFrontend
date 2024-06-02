@@ -7,7 +7,6 @@ import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { ProductoComponent } from './pages/producto/producto.component';
 import { VentaComponent } from './pages/venta/venta.component';
 import { HistorialventaComponent } from './pages/historialventa/historialventa.component';
-import { ReporteComponent } from './pages/reporte/reporte.component';
 import { SharedModule } from 'src/app/reutilizable/shared/shared.module';
 import { ModalUsuarioComponent } from './modales/modal-usuario/modal-usuario.component';
 import { CategoriaComponent } from './pages/categoria/categoria.component';
@@ -30,7 +29,6 @@ import { ModalDetalleAdquisicionComponent } from './modales/modal-detalle-adquis
     ProductoComponent,
     VentaComponent,
     HistorialventaComponent,
-    ReporteComponent,
     ModalUsuarioComponent,
     CategoriaComponent,
     ModalCategoriaComponent,

@@ -108,12 +108,12 @@
 
         <ng-container matColumnDef="precio">
           <th mat-header-cell *matHeaderCellDef> Precio de la Adquisicion </th>
-          <td mat-cell *matCellDef="let element"> {{element.precioTexto}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.precioUnitario}} </td>
         </ng-container>
 
         <ng-container matColumnDef="total">
           <th mat-header-cell *matHeaderCellDef> Subtotal </th>
-          <td mat-cell *matCellDef="let element"> {{element.subtotalTexto}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.total}} </td>
         </ng-container>
 
         <ng-container matColumnDef="accion">
