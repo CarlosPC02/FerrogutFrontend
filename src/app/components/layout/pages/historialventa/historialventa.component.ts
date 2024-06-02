@@ -21,7 +21,7 @@ export const MY_DATA_FORMATS ={
   },
   display:{
     dateInput:'DD/MM/YYYY',
-    monthYearLabel:"MMMMM YYYY"
+    monthYearLabel:"DD/MM/YYYY"
   }
 }
 @Component({
@@ -39,9 +39,9 @@ export class HistorialventaComponent implements OnInit, AfterViewInit{
     {value: "fecha", descripcion: "Por fechas"},
     {value: "numero", descripcion: "Numero venta"}
   ];
-  columnasTabla: string[]=["fechaRegistro", 'numeroDocumento', "facturado", "total", "accion"];
+  columnasTabla: string[]=["fechaRegistro", 'numeroDocumento', "facturado", "finalizado", "total", "accion"];
   dataInicio: Venta [] = [];
-  datosListaVenta = new MatTableDataSource(this.dataInicio);
+  datosListaVenta = new MatTableDataSource<Venta>(this.dataInicio);
   @ViewChild(MatPaginator) paginacionTabla!: MatPaginator;
 
 
@@ -68,16 +68,34 @@ export class HistorialventaComponent implements OnInit, AfterViewInit{
   }
 
   ngOnInit(): void {
-
+    this.datosListaVenta.paginator = this.paginacionTabla;
   }
 
   ngAfterViewInit(): void {
-    this.datosListaVenta.paginator = this.paginacionTabla;
+    this.datosListaVenta.filterPredicate = (data: Venta, filter: string) => {
+      const transformedFilter = filter.trim().toLowerCase();
+
+      const facturado = data.esFactura === 1 ? 'si' : 'no';
+      const finalizado = data.estaFinalizado === 1 ? 'si' : 'no';
+
+      const idVentaMatch = data.idVenta ? data.idVenta.toString().toLowerCase().includes(transformedFilter) : false;
+      const fechaVentaMatch = data.fechaVenta ? moment(data.fechaVenta).format('DD-MM-YYYY').toLowerCase().includes(transformedFilter) : false;
+      const totalMatch = data.total ? data.total.toString().toLowerCase().includes(transformedFilter) : false;
+      const facturadoMatch = facturado.includes(transformedFilter);
+      const finalizadoMatch = finalizado.includes(transformedFilter);
+
+      return idVentaMatch || fechaVentaMatch || totalMatch || facturadoMatch || finalizadoMatch;
+    };
+
   }
 
   aplicarFiltroTabla(event: Event){
     const filterValue = (event.target as HTMLInputElement).value;
-    this.datosListaVenta.filter = filterValue.trim().toLocaleLowerCase();
+    this.datosListaVenta.filter = filterValue.trim().toLowerCase();
+
+    if (this.datosListaVenta.paginator) {
+      this.datosListaVenta.paginator.firstPage();
+    }
   }
 
   buscarVentas(){
@@ -107,7 +125,7 @@ export class HistorialventaComponent implements OnInit, AfterViewInit{
     this._ventaServicio.historial(request).subscribe({
       next:(data)=>{
         if(data.status)
-          this.datosListaVenta=data.value;
+          this.datosListaVenta.data = data.value;
         else
         this._utilidadServicio.mostrarAlerta(data.msg, "Oops!");
 

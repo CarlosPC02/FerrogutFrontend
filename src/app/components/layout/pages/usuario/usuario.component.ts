@@ -32,6 +32,17 @@ export class UsuarioComponent implements OnInit, AfterViewInit{
   ){}
   ngOnInit():void{
     this.obtenerUsuarios();
+
+    this.dataListaUsuarios.filterPredicate = (data, filter: string) => {
+      const transformedFilter = filter.trim().toLowerCase();
+      const estado = data.estaActivo === 1 ? 'activo' : 'no activo';
+      return estado.includes(transformedFilter) ||
+             data.nombres.toLowerCase().includes(transformedFilter) ||
+             data.apellidos.toLowerCase().includes(transformedFilter) ||
+             data.ci.toLowerCase().includes(transformedFilter) ||
+             data.nombre.toLowerCase().includes(transformedFilter);
+    };
+
   }
 
   obtenerUsuarios(){

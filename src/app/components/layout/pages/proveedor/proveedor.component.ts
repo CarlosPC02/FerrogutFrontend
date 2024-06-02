@@ -30,6 +30,18 @@ export class ProveedorComponent implements OnInit, AfterViewInit{
   ){}
   ngOnInit():void{
     this.obtenerProveedores();
+
+    this.dataListaProveedores.filterPredicate = (data, filter: string) => {
+      const transformedFilter = filter.trim().toLowerCase();
+      const estado = data.estaActivo === 1 ? 'activo' : 'no activo';
+      return estado.includes(transformedFilter) ||
+             data.nombre.toLowerCase().includes(transformedFilter) ||
+             data.apePaterno.toLowerCase().includes(transformedFilter) ||
+             data.apeMaterno.toLowerCase().includes(transformedFilter) ||
+             data.ci.toLowerCase().includes(transformedFilter) ||
+             data.empresa.toLowerCase().includes(transformedFilter) ||
+             data.celular.toLowerCase().includes(transformedFilter);
+    };
   }
 
   obtenerProveedores(){

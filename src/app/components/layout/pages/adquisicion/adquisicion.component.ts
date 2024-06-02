@@ -71,7 +71,7 @@ export class AdquisicionComponent implements OnInit {
       next:(data) =>{
         if(data.status){
           const lista = data.value as Proveedor[];
-          this.listaProveedores = lista.filter(p => p.empresa.length > 0);
+          this.listaProveedores = lista.filter(p => p.empresa.length > 0 || p.estaActivo === 1);
         }
       },
       error:(e)=>{}

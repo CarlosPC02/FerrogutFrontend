@@ -67,15 +67,32 @@ export class HistorialadquisicionComponent implements OnInit, AfterViewInit{
       })
     })
   }
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.datosListaAdquisicion.paginator = this.paginacionTabla;
+   }
 
   ngAfterViewInit(): void {
-    this.datosListaAdquisicion.paginator = this.paginacionTabla;
+    this.datosListaAdquisicion.filterPredicate = (data: Adquisicion, filter: string) => {
+      const transformedFilter = filter.trim().toLowerCase();
+
+      const facturado = data.esFactura === 1 ? 'si' : 'no';
+
+      const idAdquisicionMatch = data.idAdquisicion? data.idAdquisicion.toString().toLowerCase().includes(transformedFilter) : false;
+      const fechaAdquisicionMatch = data.fechaAdquisicion ? moment(data.fechaAdquisicion).format('DD-MM-YYYY').toLowerCase().includes(transformedFilter) : false;
+      const totalMatch = data.total ? data.total.toString().toLowerCase().includes(transformedFilter) : false;
+      const facturadoMatch = facturado.includes(transformedFilter);
+
+      return idAdquisicionMatch || fechaAdquisicionMatch || totalMatch || facturadoMatch;
+    };
   }
 
-  aplicarFiltroTabla(event: Event){
+  aplicarFiltroTabla(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.datosListaAdquisicion.filter = filterValue.trim().toLocaleLowerCase();
+    this.datosListaAdquisicion.filter = filterValue.trim().toLowerCase();
+
+    if (this.datosListaAdquisicion.paginator) {
+      this.datosListaAdquisicion.paginator.firstPage();
+    }
   }
 
   buscarAdquisiciones(){
@@ -106,7 +123,7 @@ export class HistorialadquisicionComponent implements OnInit, AfterViewInit{
     ).subscribe({
       next:(data)=>{
         if(data.status)
-          this.datosListaAdquisicion=data.value;
+          this.datosListaAdquisicion.data = data.value;
         else
         this._utilidadServicio.mostrarAlerta("No se encontraron datos", "Oops!");
 

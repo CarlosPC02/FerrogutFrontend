@@ -19,8 +19,9 @@ export class ModalDetalleVentaComponent implements OnInit{
   numeroDocumento: number = 0;
   facturado: number = 0;
   total?: string ="";
+  finalizado?: number = 0;
   detalleVenta: DetalleVenta []= [];
-  columnasTabla: string[]=['producto', "cantidad", "precio", "total"];
+  columnasTabla: string[]=['producto', "cantidad", "precio", "entregado", "total"];
 
 
   dataInicio : DetalleVenta [] = [];
@@ -35,6 +36,7 @@ export class ModalDetalleVentaComponent implements OnInit{
     this.fechaRegistro = _venta.fechaVenta!;
     this.numeroDocumento = _venta.idVenta!;
     this.facturado = _venta.esFactura;
+    this.finalizado = _venta.estaFinalizado;
     this.total = String(_venta.total);
   }
 

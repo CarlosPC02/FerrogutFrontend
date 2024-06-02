@@ -65,18 +65,19 @@ export class ModalUsuarioComponent implements OnInit{
         nombres: this.datosUsuario.nombres,
         apellidos: this.datosUsuario.apellidos,
         ci: this.datosUsuario.ci,
-        descripcion: this.datosUsuario.descripcion, //
+        nombre: this.datosUsuario.nombre, //
         idRol: this.datosUsuario.idRol,
         userName: this.datosUsuario.userName,
         password: this.datosUsuario.password,
         estaActivo: String(this.datosUsuario.estaActivo),
 
-      })
+      });
     }
 
   }
  ///
   guardarEditar_Usuario(){
+
     const _usuario: Usuario = {
       idUser : this.datosUsuario == null ? 0: this.datosUsuario.idUser,
       nombres: this.formularioUsuario.value.nombres,
@@ -84,11 +85,11 @@ export class ModalUsuarioComponent implements OnInit{
       ci: this.formularioUsuario.value.ci,
       userName: this.formularioUsuario.value.userName,
       idRol: this.formularioUsuario.value.idRol,
-      descripcion: "", //
+      nombre: "", //
       password: this.formularioUsuario.value.password,
       estaActivo: parseInt (this.formularioUsuario.value.estaActivo),
     }
-
+    console.log(_usuario);
     if(this.datosUsuario == null){
       //Crear
       this._usuarioServicio.guardar(_usuario).subscribe({

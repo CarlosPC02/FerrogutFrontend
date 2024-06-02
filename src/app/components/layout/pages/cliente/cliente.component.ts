@@ -29,6 +29,13 @@ export class ClienteComponent implements OnInit, AfterViewInit {
   ){}
   ngOnInit():void{
     this.obtenerClientes();
+    this.dataListaClientes.filterPredicate = (data, filter: string) => {
+      const transformedFilter = filter.trim().toLowerCase();
+      const estado = data.esPreferencial === 1 ? 'preferencial' : 'no es preferencial';
+      return estado.includes(transformedFilter) ||
+             data.nombres.toLowerCase().includes(transformedFilter) ||
+             data.apellidos.toLowerCase().includes(transformedFilter);
+    };
   }
 
   obtenerClientes(){

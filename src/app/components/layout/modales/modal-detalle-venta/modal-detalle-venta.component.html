@@ -1,9 +1,9 @@
 <h2 mat-dialog-title>Detalle Venta</h2>
 
 <mat-dialog-content>
-    <mat-grid-list cols="4" rowHeight="70px">
+    <mat-grid-list cols="6" rowHeight="70px">
 
-      <mat-grid-tile>
+      <mat-grid-tile  [colspan]="2">
         <mat-form-field appearance="fill" style="width: 95%;">
           <mat-label>Fecha Registro</mat-label>
           <input matInput title="Fecha" [value]="fechaRegistro | date:'dd-MM-yyyy'">
@@ -12,7 +12,7 @@
 
       <mat-grid-tile>
         <mat-form-field appearance="fill" style="width: 95%;">
-          <mat-label>Numero de Venta</mat-label>
+          <mat-label> Venta</mat-label>
           <input matInput title="Numero de Venta" [(ngModel)]="numeroDocumento">
         </mat-form-field>
       </mat-grid-tile>
@@ -21,6 +21,13 @@
         <mat-form-field appearance="fill" style="width: 95%;">
           <mat-label>Facturado</mat-label>
           <input matInput title="Facturado" [value]="facturado === 1 ? 'Si' : 'No'" readonly>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="fill" style="width: 95%;">
+          <mat-label>Finalizado</mat-label>
+          <input matInput title="Facturado" [value]="finalizado === 1 ? 'Si' : 'No'" readonly>
         </mat-form-field>
       </mat-grid-tile>
 
@@ -48,6 +55,11 @@
       <ng-container matColumnDef="precio">
         <th mat-header-cell *matHeaderCellDef> Precio </th>
         <td mat-cell *matCellDef="let element"> {{element.precioVenta}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="entregado">
+        <th mat-header-cell *matHeaderCellDef> Entregado </th>
+        <td mat-cell *matCellDef="let element"> {{ element.entregado === 1 ? "Si" :  "No"}} </td>
       </ng-container>
 
       <ng-container matColumnDef="total">
