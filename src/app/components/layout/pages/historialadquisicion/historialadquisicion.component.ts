@@ -68,10 +68,11 @@ export class HistorialadquisicionComponent implements OnInit, AfterViewInit{
     })
   }
   ngOnInit(): void {
-    this.datosListaAdquisicion.paginator = this.paginacionTabla;
-   }
+    this.buscarAdquisiciones();
+  }
 
   ngAfterViewInit(): void {
+    this.datosListaAdquisicion.paginator = this.paginacionTabla;
     this.datosListaAdquisicion.filterPredicate = (data: Adquisicion, filter: string) => {
       const transformedFilter = filter.trim().toLowerCase();
 
@@ -103,7 +104,7 @@ export class HistorialadquisicionComponent implements OnInit, AfterViewInit{
       _fechaInicio = moment(this.formularioBusqueda.value.fechaInicio).format("YYYY/MM/DD");
       _fechaFin = moment(this.formularioBusqueda.value.fechaFin).format("YYYY/MM/DD");
 
-      if(_fechaInicio === "invalid date" || _fechaFin === "invalid date" ){
+      if(_fechaInicio === "Invalid date" || _fechaFin === "Invalid date" ){
         this._utilidadServicio.mostrarAlerta("Debe ingresar ambas fechas", "Oops!");
         return;
       }

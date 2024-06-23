@@ -14,7 +14,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
   declarations: [
     AppComponent,
     LoginComponent,
-    LayoutComponent
+    LayoutComponent,
+
   ],
   imports: [
     BrowserModule,

@@ -20,6 +20,8 @@ import { AdquisicionComponent } from './pages/adquisicion/adquisicion.component'
 import { HistorialadquisicionComponent } from './pages/historialadquisicion/historialadquisicion.component';
 import { ModalDetalleVentaComponent } from './modales/modal-detalle-venta/modal-detalle-venta.component';
 import { ModalDetalleAdquisicionComponent } from './modales/modal-detalle-adquisicion/modal-detalle-adquisicion.component';
+import { ModalRecoleccionesComponent } from './modales/modal-recolecciones/modal-recolecciones.component';
+import { ModalRecoleccionComponent } from './modales/modal-recoleccion/modal-recoleccion.component';
 
 
 @NgModule({
@@ -41,6 +43,8 @@ import { ModalDetalleAdquisicionComponent } from './modales/modal-detalle-adquis
     HistorialadquisicionComponent,
     ModalDetalleVentaComponent,
     ModalDetalleAdquisicionComponent,
+    ModalRecoleccionesComponent,
+    ModalRecoleccionComponent,
   ],
   imports: [
     CommonModule,

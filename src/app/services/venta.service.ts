@@ -28,6 +28,8 @@ export class VentaService {
     return this.http.get<ResponseApi>(`${environment.endpoint}detalleVenta/index/${id}`);
   }
 
-
+  listarRecolecciones(id: number){
+    return this.http.get<ResponseApi>(`${environment.endpoint}/recoleccion/index/${id}`);
+  }
 
 }

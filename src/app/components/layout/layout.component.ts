@@ -9,6 +9,7 @@ import { UtilidadService } from 'src/app/reutilizable/utilidad.service';
 export class LayoutComponent implements OnInit{
   nombres: string ='';
   apellidos: string = '';
+  rol: string = '';
 
   constructor(private router:Router, private _utilidadServicio:UtilidadService){
 
@@ -22,6 +23,7 @@ export class LayoutComponent implements OnInit{
       const usuario = usuarioResp.usuario[0];
       this.nombres = usuario.nombres;
       this.apellidos = usuario.apellidos;
+      //this.rol = usuario.rol;
     }
 
   }

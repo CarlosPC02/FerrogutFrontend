@@ -14,6 +14,7 @@ import { Venta } from 'src/app/interfaces/venta';
 import { VentaService } from 'src/app/services/venta.service';
 import { UtilidadService } from 'src/app/reutilizable/utilidad.service';
 import { Envio } from 'src/app/interfaces/envio';
+import Swal from 'sweetalert2';
 
 export const MY_DATA_FORMATS ={
   parse:{
@@ -68,10 +69,11 @@ export class HistorialventaComponent implements OnInit, AfterViewInit{
   }
 
   ngOnInit(): void {
-    this.datosListaVenta.paginator = this.paginacionTabla;
+    this.buscarVentas();
   }
 
   ngAfterViewInit(): void {
+    this.datosListaVenta.paginator = this.paginacionTabla;
     this.datosListaVenta.filterPredicate = (data: Venta, filter: string) => {
       const transformedFilter = filter.trim().toLowerCase();
 
@@ -106,14 +108,12 @@ export class HistorialventaComponent implements OnInit, AfterViewInit{
       _fechaInicio = moment(this.formularioBusqueda.value.fechaInicio).format("YYYY/MM/DD");
       _fechaFin = moment(this.formularioBusqueda.value.fechaFin).format("YYYY/MM/DD");
 
-      if(_fechaInicio === "invalid date" || _fechaFin === "invalid date" ){
+      if(_fechaInicio === "Invalid date" || _fechaFin === "Invalid date" ){
         this._utilidadServicio.mostrarAlerta("Debe ingresar ambas fechas", "Oops!");
         return;
       }
     }
 
-    let inicio = new Date(_fechaInicio);
-    let fin= new Date(_fechaFin);
 
     const request: Envio = {
       buscarPor:this.formularioBusqueda.value.buscarPor,
@@ -142,6 +142,37 @@ export class HistorialventaComponent implements OnInit, AfterViewInit{
       disableClose: true,
       width: "700px"
     })
+  }
+
+  terminarRecoleccion(_venta:Venta){
+
+    // Swal.fire({
+    //   title: 'Esta seguro de terminar la venta con Id: ',
+    //   text: _venta.idVenta,
+    //   icon: "warning",
+    //   confirmButtonColor: '#3085d6',
+    //   confirmButtonText: "Si",
+    //   cancelButtonAriaLabel: '#d33',
+    //   cancelButtonText: "No, volver",
+
+    // }).then((resultado)=>{
+    //   if(resultado.isConfirmed){
+    //     this._ventaServicio.guardar(_venta.idVenta).subscribe({
+    //       next:(data)=>{
+    //         if(data.status){
+    //           this._utilidadServicio.mostrarAlerta(data.msg, "Listo!");
+    //           this.buscarVentas();
+    //         }else
+
+    //           this._utilidadServicio.mostrarAlerta(data.msg, "Error")
+    //       },
+    //       error:(e)=>{}
+
+    //     })
+    //   }
+
+    // })
+
   }
 
 

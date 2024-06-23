@@ -67,14 +67,23 @@
         <td mat-cell *matCellDef="let element"> {{element.subtotal}} </td>
       </ng-container>
 
-      <!-- <ng-container matColumnDef="accion">
+      <ng-container matColumnDef="accion">
         <th mat-header-cell *matHeaderCellDef style="width:80px;"> Acciones </th>
+
         <td mat-cell *matCellDef="let element">
-          <button mat-icon-button color="warn" (click)="">
-            <mat-icon>delete</mat-icon>
+          <button mat-icon-button color="submit" (click)="abrirModalRecoleccion(element)" *ngIf="element.entregado !== 1">
+            <mat-icon>add_circle</mat-icon>
           </button>
         </td>
-      </ng-container> -->
+
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="submit" (click)="abrirModalRecolecciones(element)">
+            <mat-icon>history</mat-icon>
+          </button>
+        </td>
+
+
+      </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="columnasTabla"></tr>
       <tr mat-row *matRowDef="let row; columns: columnasTabla;"></tr>

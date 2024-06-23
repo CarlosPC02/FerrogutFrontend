@@ -82,6 +82,7 @@ export class ClienteComponent implements OnInit, AfterViewInit {
   }
 
   eliminarCliente(cliente: Cliente){
+    
     Swal.fire({
       title: 'Desea eliminar el cliente?',
       text: cliente.nombres,

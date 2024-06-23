@@ -1,0 +1,38 @@
+
+<mat-dialog-content>
+  <mat-grid-list cols="6" rowHeight="70px">
+
+  </mat-grid-list>
+
+  <h4>Lista de Recolecciones</h4>
+  <table mat-table [dataSource]="dataListaRecolecciones" class="mat-elevation-z2">
+
+      <ng-container matColumnDef="recoleccion">
+        <th mat-header-cell *matHeaderCellDef> Id Recoleccion </th>
+        <td mat-cell *matCellDef="let element"> {{element.idRecoleccion}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="detalleVenta">
+        <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+        <td mat-cell *matCellDef="let element"> {{element.idDetalleVenta}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="cantidad">
+        <th mat-header-cell *matHeaderCellDef> Precio </th>
+        <td mat-cell *matCellDef="let element"> {{element.Cantidad}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="cantidadMaxima">
+        < <th mat-header-cell *matHeaderCellDef> Precio </th>
+        <td mat-cell *matCellDef="let element"> {{element.CantidadMaxima}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnasTabla"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnasTabla;"></tr>
+  </table>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close cdkFocusInitial color="warn">Volver</button>
+</mat-dialog-actions>
+
